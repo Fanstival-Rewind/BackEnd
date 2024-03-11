@@ -2,12 +2,16 @@ package domain;
 
 
 import domain.common.BaseEntity;
+import domain.enums.Grade;
+import domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -37,9 +41,16 @@ public class User extends BaseEntity {
 
     private Grade grade;//enum type으로 등급 정하기
 
+    private Timestamp createdAt;
+
+    private Timestamp updatedAt;
+
+    private Timestamp deletedAt;
+
+
     @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<follower> followerList = new ArrayList<>();//follower로 좋아하는 가수 설정
+    private List<Follower> followerList = new ArrayList<>();//follower로 좋아하는 가수 설정
 
     public void setNickname(String nickname){
         this.nickname = nickname;
@@ -51,5 +62,21 @@ public class User extends BaseEntity {
 
     public void setStatus(int status){
         this.status = status;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public void setRole(Role role){
+        this.role = role;
+    }
+
+    public void setGrade(Grade grade){
+        this.grade = grade;
     }
 }
