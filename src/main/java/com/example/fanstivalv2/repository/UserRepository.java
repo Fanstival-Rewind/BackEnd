@@ -14,6 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByRefreshToken(String refreshToken);
 
-    Optional<User> findBySocialTypeAAndSocialId(SocialType socialType);
+    Optional<User> findBySocialTypeAndSocialId(SocialType socialType, String socialId);
     //OAuth2로그인 구현 시 사용
 }
