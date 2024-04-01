@@ -37,4 +37,5 @@ out/
 .vscode/
 ##YML FILE ###
 **/src/main/resources/application-jwt.yml
+#MySQL
 **/src/main/resources/application.yml
