@@ -25,9 +25,11 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-    implementation 'org.projectlombok:lombok'
     implementation 'com.auth0:java-jwt:4.2.1'
     implementation 'mysql:mysql-connector-java:8.0.30'
+
+    implementation 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20' // Lombok을 annotation processor로 추가합니다.
 }
 
 tasks.named('test') {
