@@ -3,8 +3,11 @@ package domain;
 import domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.cglib.core.Local;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Getter
@@ -27,11 +30,11 @@ public class Board extends BaseEntity {
     @Lob
     private String content;
 
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
-    private Timestamp updatedAt;
+    private LocalDateTime updatedAt;
 
-    private Timestamp deletedAt;
+    private LocalDateTime deletedAt;
 
     public void setTitle(String title) {
         this.title = title;
@@ -41,11 +44,11 @@ public class Board extends BaseEntity {
         this.content = content;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public void setDeletedAt(Timestamp deletedAt) {
-        this.deletedAt = deletedAt;
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = LocalDateTime.now();
     }
 }

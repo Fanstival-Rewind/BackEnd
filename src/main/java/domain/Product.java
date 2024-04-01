@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -29,19 +31,20 @@ public class Product extends BaseEntity {
 
     private BigDecimal price;
 
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
-    private Timestamp updatedAt;
+    private LocalDateTime updatedAt;
 
-    private Timestamp deletedAt;
+    private LocalDateTime deletedAt;
 
     public void setDescription(String description) {
         this.description = description;
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+        this.updatedAt = LocalDateTime.now();
     }
+
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+        this.updatedAt = LocalDateTime.now();
     }
 }
