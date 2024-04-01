@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -28,28 +30,28 @@ public class Schedule extends BaseEntity {
 
     private String location;
 
-    private Timestamp startTime;
+    private LocalDateTime startTime;
 
-    private Timestamp endTime;
+    private LocalDateTime endTime;
 
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
-    private Timestamp updatedAt;
+    private LocalDateTime updatedAt;
 
-    private Timestamp deletedAt;
+    private LocalDateTime deletedAt;
 
     public void setTitle(String title) {
         this.title = title;
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+        this.updatedAt = LocalDateTime.now();
     }
 
     public void setDescription(String description) {
         this.description = description;
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+        this.updatedAt = LocalDateTime.now();
     }
 
     public void setLocation(String location) {
         this.location = location;
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+        this.updatedAt = LocalDateTime.now();
     }
 }
