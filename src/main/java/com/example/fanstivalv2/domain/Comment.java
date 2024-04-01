@@ -17,11 +17,11 @@ public class Comment extends BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "board_id", referencedColumnName = "board_id")
+    @JoinColumn(name = "board_id")
     private Board board;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Lob
