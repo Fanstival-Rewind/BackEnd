@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.example.fanstivalv2.repository.UserRepository;
 
@@ -19,19 +20,19 @@ import java.util.Optional;
 @Slf4j
 public class JwtService {
 
-    @org.springframework.beans.factory.annotation.Value("${jwt.secretKey}")
+    @Value("${jwt.secretKey}")
     private String secretKey;
 
-    @org.springframework.beans.factory.annotation.Value("${jwt.access.expiration}")
+    @Value("${jwt.access.expiration}")
     private Long accessTokenExpirationPeriod;
 
-    @org.springframework.beans.factory.annotation.Value("${jwt.refresh.expiration}")
+    @Value("${jwt.refresh.expiration}")
     private Long refreshTokenExpirationPeriod;
 
-    @org.springframework.beans.factory.annotation.Value("${jwt.access.header}")
+    @Value("${jwt.access.header}")
     private String accessHeader;
 
-    @org.springframework.beans.factory.annotation.Value("${jwt.refresh.header}")
+    @Value("${jwt.refresh.header}")
     private String refreshHeader;
 
     //JWT's Subject와 Claim = email
