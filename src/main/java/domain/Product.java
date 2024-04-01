@@ -42,6 +42,7 @@ public class Product extends BaseEntity {
         this.updatedAt = LocalDateTime.now();
     }
 
+
     public void setPrice(BigDecimal price) {
         this.price = price;
         this.updatedAt = LocalDateTime.now();
