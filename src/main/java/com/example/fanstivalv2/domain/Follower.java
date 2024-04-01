@@ -20,11 +20,11 @@ public class Follower extends BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "follower_id", referencedColumnName = "follower_id")
+    @JoinColumn(name = "follower_id")
     private User follower;
 
     @ManyToOne
-    @JoinColumn(name = "followed_id", referencedColumnName = "followed_id")
+    @JoinColumn(name = "followed_id")
     private User followed;
 
     @Builder.Default
