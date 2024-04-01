@@ -19,7 +19,7 @@ public class Product extends BaseEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "seller_id", referencedColumnName = "seller_id")
+    @JoinColumn(name = "seller_id")
     private User seller;
 
     private String name;
