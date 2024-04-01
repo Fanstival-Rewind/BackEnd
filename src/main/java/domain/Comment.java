@@ -4,8 +4,7 @@ import domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
-
+import java.time.LocalDateTime;
 @Entity
 @Getter
 @Builder
@@ -28,14 +27,14 @@ public class Comment extends BaseEntity {
     @Lob
     private String content;
 
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
-    private Timestamp updatedAt;
+    private LocalDateTime updatedAt;
 
-    private Timestamp deletedAt;
+    private LocalDateTime deletedAt;
 
     public void setContent(String content) {
         this.content = content;
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
+        this.updatedAt = LocalDateTime.now();
     }
 }
