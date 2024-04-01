@@ -27,10 +27,6 @@ public class Follower extends BaseEntity {
     @JoinColumn(name = "followed_id")
     private User followed;
 
-    @Builder.Default
-    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
-    private List<Follower> followerList = new ArrayList<>();
-
     public void setFollower(User follower) {
         this.follower = follower;
     }
