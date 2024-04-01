@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import com.example.fanstivalv2.jwt.jwtservice.JwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -17,7 +18,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtService jwtService;
     private final UserRepository userRepository;
 
-    @org.springframework.beans.factory.annotation.Value("${jwt.access.expiration}")
+    @Value("${jwt.access.expiration}")
     private String accessTokenExpiration;
 
     @Override
