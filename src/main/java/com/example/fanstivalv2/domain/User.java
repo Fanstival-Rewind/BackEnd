@@ -1,6 +1,5 @@
 package com.example.fanstivalv2.domain;
 
-
 import com.example.fanstivalv2.domain.common.BaseEntity;
 import com.example.fanstivalv2.domain.enums.Grade;
 import com.example.fanstivalv2.domain.enums.Role;
@@ -32,10 +31,10 @@ public class User extends BaseEntity {
 
     private String nickname;
 
-    private String password;//비밀번호
+    private String password; // 비밀번호
 
     @Enumerated(EnumType.STRING)
-    private SocialType socialType;//Enum type으로 kakao,naver, google 사용
+    private SocialType socialType; // Enum type으로 kakao,naver, google 사용
 
     private String socialId;
 
@@ -47,12 +46,12 @@ public class User extends BaseEntity {
 
     @Column(columnDefinition = "TINYINT(1)")
     @ColumnDefault("1")
-    private int status; //  0: 비활성화, 1: 활성
+    private int status; // 0: 비활성화, 1: 활성
 
     @Enumerated(EnumType.STRING)
-    private Role role;//enum type으로 가수, 팬, 둘 다로 생성
+    private Role role; // enum type으로 가수, 팬, 둘 다로 생성
 
-    private Grade grade;//enum type으로 등급 정하기
+    private Grade grade; // enum type으로 등급 정하기
 
     private LocalDateTime createdAt;
 
@@ -60,21 +59,21 @@ public class User extends BaseEntity {
 
     private LocalDateTime deletedAt;
 
-    private String refreshToken;//리프레쉬 토큰
+    private String refreshToken; // 리프레쉬 토큰
 
     @Builder.Default
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Follower> followerList = new ArrayList<>();//follower로 좋아하는 가수 설정
+    @OneToMany(mappedBy = "followed", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Follower> followers = new ArrayList<>(); // 특정 사용자를 팔로우하는 사람들의 목록
 
-    public void setNickname(String nickname){
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
-    public void setProfileImage(String profileImage){
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
 
-    public void setStatus(int status){
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -86,20 +85,20 @@ public class User extends BaseEntity {
         this.deletedAt = deletedAt;
     }
 
-    public void setRole(Role role){
+    public void setRole(Role role) {
         this.role = role;
     }
 
-    public void setGrade(Grade grade){
+    public void setGrade(Grade grade) {
         this.grade = grade;
     }
 
-    //비밀번호 암호화 메소드
-    public void passwordEncode(PasswordEncoder passwordEncoder){
+    // 비밀번호 암호화 메소드
+    public void passwordEncode(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(this.password);
     }
 
-    public void updateRefreshToken(String updateRefreshToken){
+    public void updateRefreshToken(String updateRefreshToken) {
         this.refreshToken = updateRefreshToken;
     }
 }
