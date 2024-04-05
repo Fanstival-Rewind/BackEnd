@@ -49,6 +49,7 @@ public class User extends BaseEntity {
     private int status; // 0: 비활성화, 1: 활성
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private Role role; // enum type으로 가수, 팬, 둘 다로 생성
 
     private Grade grade; // enum type으로 등급 정하기
