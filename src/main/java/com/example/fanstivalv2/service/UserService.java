@@ -33,7 +33,7 @@ public class UserService {
                 .nickname(userSignUpDto.getNickname())
                 .age(userSignUpDto.getAge())
                 .profileImage(userSignUpDto.getProfileImage())
-                .role(Role.FAN)//처음 생성시에는 Fan으로 등록
+                .role(Role.FAN)//처음 생성시에는 FAN으로 등록
                 .build();
 
         user.passwordEncode(passwordEncoder);
