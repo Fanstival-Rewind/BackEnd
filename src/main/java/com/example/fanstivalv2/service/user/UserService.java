@@ -1,4 +1,4 @@
-package com.example.fanstivalv2.service;
+package com.example.fanstivalv2.service.user;
 
 import com.example.fanstivalv2.domain.User;
 import com.example.fanstivalv2.domain.enums.Role;
@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.example.fanstivalv2.repository.UserRepository;
-import com.example.fanstivalv2.web.UserSignUpDto;
+import com.example.fanstivalv2.web.dto.user.UserSignUpDto;
 
 @Service
 @Transactional
