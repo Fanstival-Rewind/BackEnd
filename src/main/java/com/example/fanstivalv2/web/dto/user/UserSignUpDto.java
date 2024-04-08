@@ -1,4 +1,4 @@
-package com.example.fanstivalv2.web;
+package com.example.fanstivalv2.web.dto.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
