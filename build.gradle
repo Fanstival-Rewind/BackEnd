@@ -30,6 +30,11 @@ dependencies {
 
     implementation 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20' // Lombok을 annotation processor로 추가합니다.
+
+    //스웨거 세팅
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 }
 
 tasks.named('test') {
