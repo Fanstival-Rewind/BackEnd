@@ -7,4 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 public interface BoardCommandService {
 
     Board createBoard(HttpServletRequest httpServletRequest, BoardRequestDto.CreateBoardDto request);
+    Board updateBoard(HttpServletRequest httpServletRequest, Long id, BoardRequestDto.UpdateBoardDto request);
+
 }
