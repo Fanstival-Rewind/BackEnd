@@ -31,4 +31,17 @@ public class BoardResponseDto {
         LocalDateTime updatedAt;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class GetBoardResultDTO{
+        Long boardId;
+        Long userId;
+        String nickName;//어떤 유저가 작성했는지 닉네임과 아이디가 필요
+        String title;
+        String contents;
+        LocalDateTime updatedAt;
+    }
+
 }
