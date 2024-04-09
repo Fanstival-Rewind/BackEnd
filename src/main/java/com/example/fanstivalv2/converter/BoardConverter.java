@@ -26,6 +26,16 @@ public class BoardConverter {
                 .build();
     }
 
+    public static BoardResponseDto.GetBoardResultDTO toGetBoardResultDTO(Board board){
+        return BoardResponseDto.GetBoardResultDTO.builder()
+                .boardId(board.getId())
+                .userId(board.getUser().getId())
+                .nickName(board.getUser().getNickname())
+                .title(board.getTitle())
+                .contents(board.getContent())
+                .build();
+    }
+
     public static Board toBoard(BoardRequestDto.CreateBoardDto request){
         return Board.builder()
                 .title(request.getTitle())
