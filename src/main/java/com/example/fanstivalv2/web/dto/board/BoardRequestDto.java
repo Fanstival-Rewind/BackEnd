@@ -11,6 +11,10 @@ public class BoardRequestDto {
         private String title;
         private String contents;
     }
-
+    @Getter
+    public static class UpdateBoardDto{
+        private String title;
+        private String contents;
+    }
 
 }
