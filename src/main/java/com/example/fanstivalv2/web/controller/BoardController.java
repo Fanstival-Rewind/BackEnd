@@ -5,6 +5,7 @@ import com.example.fanstivalv2.apiPayload.code.status.SuccessStatus;
 import com.example.fanstivalv2.converter.BoardConverter;
 import com.example.fanstivalv2.domain.Board;
 import com.example.fanstivalv2.service.board.BoardCommandService;
+import com.example.fanstivalv2.service.board.BoardQueryService;
 import com.example.fanstivalv2.web.dto.board.BoardRequestDto;
 import com.example.fanstivalv2.web.dto.board.BoardResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
 
     private final BoardCommandService boardCommandService;
+    private final BoardQueryService boardQueryService;
 
     @PostMapping
     public ApiResponse<BoardResponseDto.CreateBoardResultDTO> createBoard(HttpServletRequest httpServletRequest, @RequestBody BoardRequestDto.CreateBoardDto request){
@@ -31,5 +33,11 @@ public class BoardController {
 
         Board board = boardCommandService.updateBoard(httpServletRequest, id, request);
         return ApiResponse.of(SuccessStatus.BOARD_UPDATED, BoardConverter.toUpdateResultDTO(board));
+    }
+
+    @GetMapping("/{boardId}")
+    public ApiResponse<BoardResponseDto.GetBoardResultDTO> getBoard(HttpServletRequest httpServletRequest, @PathVariable(name = "boardId") Long id){
+        Board board = boardQueryService.getBoard(httpServletRequest, id);
+        return ApiResponse.of(SuccessStatus.BOARD_FOUND, BoardConverter.toGetBoardResultDTO(board));
     }
 }
