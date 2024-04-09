@@ -19,4 +19,16 @@ public class BoardResponseDto {
         String contents;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UpdateBoardResultDTO{
+        Long boardId;
+        String title;
+        String contents;
+        LocalDateTime updatedAt;
+    }
+
 }

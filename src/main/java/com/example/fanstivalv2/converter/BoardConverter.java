@@ -17,6 +17,15 @@ public class BoardConverter {
                 .build();
     }
 
+    public static BoardResponseDto.UpdateBoardResultDTO toUpdateResultDTO(Board board){
+        return BoardResponseDto.UpdateBoardResultDTO.builder()
+                .boardId(board.getId())
+                .title(board.getTitle())
+                .contents(board.getContent())
+                .updatedAt(LocalDateTime.now())
+                .build();
+    }
+
     public static Board toBoard(BoardRequestDto.CreateBoardDto request){
         return Board.builder()
                 .title(request.getTitle())

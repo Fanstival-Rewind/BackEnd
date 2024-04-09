@@ -9,10 +9,7 @@ import com.example.fanstivalv2.web.dto.board.BoardRequestDto;
 import com.example.fanstivalv2.web.dto.board.BoardResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,5 +24,12 @@ public class BoardController {
         Board board = boardCommandService.createBoard(httpServletRequest, request);
 
         return ApiResponse.of(SuccessStatus.BOARD_CREATED, BoardConverter.toCreateResultDTO(board));
+    }
+
+    @PatchMapping("/{boardId}")
+    public ApiResponse<BoardResponseDto.UpdateBoardResultDTO> updateBoard(HttpServletRequest httpServletRequest, @PathVariable(name = "boardId") Long id, @RequestBody BoardRequestDto.UpdateBoardDto request){
+
+        Board board = boardCommandService.updateBoard(httpServletRequest, id, request);
+        return ApiResponse.of(SuccessStatus.BOARD_UPDATED, BoardConverter.toUpdateResultDTO(board));
     }
 }
