@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/board")
@@ -39,5 +41,11 @@ public class BoardController {
     public ApiResponse<BoardResponseDto.GetBoardResultDTO> getBoard(HttpServletRequest httpServletRequest, @PathVariable(name = "boardId") Long id){
         Board board = boardQueryService.getBoard(httpServletRequest, id);
         return ApiResponse.of(SuccessStatus.BOARD_FOUND, BoardConverter.toGetBoardResultDTO(board));
+    }
+
+    @GetMapping("/all")
+    public ApiResponse<BoardResponseDto.GetBoardListResultDTO> getBoardList(HttpServletRequest httpServletRequest){
+        List<Board> boardList = boardQueryService.getBoardList(httpServletRequest);
+        return ApiResponse.of(SuccessStatus.BOARD_FOUND, BoardConverter.toGetBoardListResultDTO(boardList));
     }
 }
