@@ -50,7 +50,7 @@ public class BoardQueryServiceImpl implements BoardQueryService{
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserHandler(ErrorStatus.USER_NOT_FOUND));
 
-        List <Board> boardList = boardRepository.findAllByUserId(user);
+        List <Board> boardList = boardRepository.findAllByUserId(user.getId());
         return boardList;
     }
 }
