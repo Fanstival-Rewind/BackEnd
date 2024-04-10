@@ -18,6 +18,8 @@ import org.springframework.security.core.token.TokenService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardQueryServiceImpl implements BoardQueryService{
@@ -37,5 +39,18 @@ public class BoardQueryServiceImpl implements BoardQueryService{
         Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(() -> new BoardHandler(ErrorStatus.BOARD_NOT_FOUND));
 
         return board;
+    }
+
+    @Override
+    public List<Board> getBoardList(HttpServletRequest httpServletRequest){
+        String accessToken = jwtService.extractAccessToken(httpServletRequest)
+                .orElseThrow(() -> new RuntimeException("액세스 토큰이 누락되었거나 잘못되었습니다."));
+        String email = jwtService.extractEmail(accessToken)
+                .orElseThrow(() -> new RuntimeException("액세스 토큰에서 이메일을 추출할 수 없습니다."));
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserHandler(ErrorStatus.USER_NOT_FOUND));
+
+        List <Board> boardList = boardRepository.findAllByUserId(user.getId());
+        return boardList;
     }
 }

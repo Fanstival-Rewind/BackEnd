@@ -5,6 +5,8 @@ import com.example.fanstivalv2.web.dto.board.BoardRequestDto;
 import com.example.fanstivalv2.web.dto.board.BoardResponseDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BoardConverter {
 
@@ -33,6 +35,15 @@ public class BoardConverter {
                 .nickName(board.getUser().getNickname())
                 .title(board.getTitle())
                 .contents(board.getContent())
+                .build();
+    }
+
+    public static BoardResponseDto.GetBoardListResultDTO toGetBoardListResultDTO(List<Board> boardList){
+        List<BoardResponseDto.GetBoardResultDTO> boardResultDTOList = boardList.stream()
+                .map(BoardConverter::toGetBoardResultDTO).collect(Collectors.toList());
+
+        return BoardResponseDto.GetBoardListResultDTO.builder()
+                .boardList(boardResultDTOList)
                 .build();
     }
 
