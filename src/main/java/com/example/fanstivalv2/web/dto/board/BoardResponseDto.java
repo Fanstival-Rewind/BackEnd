@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class BoardResponseDto {
 
@@ -44,4 +45,11 @@ public class BoardResponseDto {
         LocalDateTime updatedAt;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class GetBoardListResultDTO{
+        List<GetBoardResultDTO> boardList;
+    }
 }
