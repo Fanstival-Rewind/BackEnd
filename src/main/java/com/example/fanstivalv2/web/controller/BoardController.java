@@ -43,6 +43,12 @@ public class BoardController {
         return ApiResponse.of(SuccessStatus.BOARD_FOUND, BoardConverter.toGetBoardResultDTO(board));
     }
 
+    @DeleteMapping("/{boardId}")
+    public ApiResponse<BoardResponseDto.DeleteBoardResultDTO> deleteBoard(HttpServletRequest httpServletRequest, @PathVariable(name = "boardId") Long id){
+        return ApiResponse.of(SuccessStatus.BOARD_DELETED, boardCommandService.deleteBoard(httpServletRequest, id));
+    }
+
+
     @GetMapping("/all")
     public ApiResponse<BoardResponseDto.GetBoardListResultDTO> getBoardList(HttpServletRequest httpServletRequest){
         List<Board> boardList = boardQueryService.getBoardList(httpServletRequest);
