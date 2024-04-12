@@ -10,6 +10,7 @@ import com.example.fanstivalv2.jwt.jwtservice.JwtService;
 import com.example.fanstivalv2.repository.BoardRepository;
 import com.example.fanstivalv2.repository.UserRepository;
 import com.example.fanstivalv2.web.dto.board.BoardRequestDto;
+import com.example.fanstivalv2.web.dto.board.BoardResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cglib.core.Local;
@@ -63,5 +64,23 @@ public class BoardCommandServiceImpl implements BoardCommandService{
         }
         board.setUpdatedAt(LocalDateTime.now());
         return board;
+    }
+
+    @Override
+    @Transactional
+    public BoardResponseDto.DeleteBoardResultDTO deleteBoard(HttpServletRequest httpServletRequest, Long id){
+        String accessToken = jwtService.extractAccessToken(httpServletRequest)
+                .orElseThrow(() -> new RuntimeException("액세스 토큰이 누락되었거나 잘못되었습니다."));
+        String email = jwtService.extractEmail(accessToken)
+                .orElseThrow(() -> new RuntimeException("액세스 토큰에서 이메일을 추출할 수 없습니다."));
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserHandler(ErrorStatus.USER_NOT_FOUND));
+        Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(() -> new BoardHandler(ErrorStatus.BOARD_NOT_FOUND));
+
+        BoardResponseDto.DeleteBoardResultDTO deleteBoardResultDTO = BoardConverter.toDeleteResultDTO(board);
+
+        boardRepository.delete(board);
+
+        return deleteBoardResultDTO;
     }
 }
