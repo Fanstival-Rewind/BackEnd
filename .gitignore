@@ -38,6 +38,7 @@ out/
 ##YML FILE ###
 **/src/main/resources/application-jwt.yml
 **/src/main/resources/application-oauth.yml
+**/src/main/resources/application-spotify.yml
 #MySQL
 **/src/main/resources/application.yml
 

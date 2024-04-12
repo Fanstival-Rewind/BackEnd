@@ -13,6 +13,7 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' } // JitPack 저장소 추가
 }
 
 dependencies {
@@ -30,11 +31,15 @@ dependencies {
 
     implementation 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20' // Lombok을 annotation processor로 추가합니다.
+    implementation 'org.json:json:20210307'
+
 
     //스웨거 세팅
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    //spotify API 세팅
+    implementation 'com.github.thelinmichael:spotify-web-api-java:master-SNAPSHOT'
 }
 
 tasks.named('test') {

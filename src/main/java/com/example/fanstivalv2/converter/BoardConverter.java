@@ -47,6 +47,13 @@ public class BoardConverter {
                 .build();
     }
 
+    public static BoardResponseDto.DeleteBoardResultDTO toDeleteResultDTO(Board board){
+        return BoardResponseDto.DeleteBoardResultDTO.builder()
+                .boardId(board.getId())
+                .deletedAt(LocalDateTime.now())
+                .build();
+    }
+
     public static Board toBoard(BoardRequestDto.CreateBoardDto request){
         return Board.builder()
                 .title(request.getTitle())
