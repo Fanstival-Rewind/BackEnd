@@ -45,6 +45,10 @@ public class BoardResponseDto {
         LocalDateTime updatedAt;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class DeleteBoardResultDTO{
         Long boardId;
         LocalDateTime deletedAt;
