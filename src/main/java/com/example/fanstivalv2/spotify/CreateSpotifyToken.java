@@ -4,31 +4,42 @@ import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
 import com.wrapper.spotify.model_objects.credentials.ClientCredentials;
 import com.wrapper.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
+import jakarta.annotation.PostConstruct;
 import org.apache.hc.core5.http.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CreateSpotifyToken {
 
+    @Value("${spotify.client.id}")
+    private String clientId;
 
-    private static final String CLIENT_ID = "${spotify.client.id}";
+    @Value("${spotify.client.secret}")
+    private String clientSecret;
 
-    private static final String CLIENT_SECRET = "${spotify.client.secret}";
+    private SpotifyApi spotifyApi;
 
-    private static final SpotifyApi spotifyApi = new SpotifyApi.Builder().setClientId(CLIENT_ID).setClientSecret(CLIENT_SECRET).build();
+    @PostConstruct // 이 어노테이션은 해당 메소드가 빈의 초기화가 완료된 후 실행되도록 합니다.
+    private void initializeSpotifyApi() {
+        spotifyApi = new SpotifyApi.Builder()
+                .setClientId(clientId)
+                .setClientSecret(clientSecret)
+                .build();
+    }
 
-    public static String accessToken(){
+    public String accessToken() {
         ClientCredentialsRequest clientCredentialsRequest = spotifyApi.clientCredentials().build();
-        try{
+        try {
             final ClientCredentials clientCredentials = clientCredentialsRequest.execute();
-
             spotifyApi.setAccessToken(clientCredentials.getAccessToken());
-                return spotifyApi.getAccessToken();
-        }catch (IOException | SpotifyWebApiException | ParseException e){
+            return spotifyApi.getAccessToken();
+        } catch (IOException | SpotifyWebApiException | ParseException e) {
             System.out.println("Error " + e.getMessage());
             return "error";
         }
     }
-
-
 }
+
